@@ -1,7 +1,6 @@
-.headingItalic {
-	font-style: italic;
-}
-
-.red {
-	color: red;
+.heading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
 }

@@ -1,14 +1,16 @@
 import './styles/theme.css';
 import './styles/global.css';
 import { Heading } from './components/Heading';
+import { TimerIcon } from 'lucide-react';
 
 export function App() {
-	console.log('App component rendered');
-
 	return (
 		<>
 			<Heading attr={true} attr1='linda osa'>
 				Maria do bairro
+				<button>
+					<TimerIcon />
+				</button>
 			</Heading>
 			<ul>
 				<li>1</li>
