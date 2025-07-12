@@ -1,22 +1,25 @@
 import './styles/theme.css';
 import './styles/global.css';
-import { Heading } from './components/Heading';
-import { TimerIcon } from 'lucide-react';
+import { Container } from './components/Container/';
+import { Heading } from './components/Heading/';
 
 export function App() {
 	return (
 		<>
-			<Heading attr={true} attr1='linda osa'>
-				Maria do bairro
-				<button>
-					<TimerIcon />
-				</button>
-			</Heading>
-			<ul>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-			</ul>
+			<div className='container-fluid'>
+				<Container>
+					<Heading>Logo</Heading>
+				</Container>
+				<Container>
+					<Heading>MENU</Heading>
+				</Container>
+				<Container>
+					<Heading>FORMULÁRIO</Heading>
+				</Container>
+				<Container>
+					<Heading>FOOTER</Heading>
+				</Container>
+			</div>
 		</>
 	);
 }

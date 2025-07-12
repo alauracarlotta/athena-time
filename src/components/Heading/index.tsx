@@ -1,10 +1,8 @@
 import type React from 'react';
-import styles from './Heading.module.css';
+import styles from './styles.module.css';
 
 type HeadingProps = {
 	children: React.ReactNode;
-	attr: boolean;
-	attr1: string;
 };
 
 export const Heading = ({ children }: HeadingProps) => {
@@ -20,8 +18,8 @@ export const Heading = ({ children }: HeadingProps) => {
 	const { children } = props;
 
 	return (
-		<>
+		< NOTE FRAGMENT>
 			<h1 className={styles.heading}>{children}</h1>
-		</>
+		</FRAGMENT>
 	);
 }; */
