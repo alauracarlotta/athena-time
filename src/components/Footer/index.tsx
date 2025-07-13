@@ -1,14 +1,14 @@
 import type React from 'react';
 import styles from './styles.module.css';
 
-type HeadingProps = {
+type FooterProps = {
 	children: React.ReactNode;
 };
 
-export const Heading = ({ children }: HeadingProps) => {
+export const Footer = ({ children }: FooterProps) => {
 	return (
 		<>
-			<h2 className={styles.heading}>{children}</h2>
+			<h2 className={styles.footer}>{children}</h2>
 		</>
 	);
 };

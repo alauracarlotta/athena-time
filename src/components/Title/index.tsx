@@ -1,14 +1,14 @@
 import type React from 'react';
 import styles from './styles.module.css';
 
-type HeadingProps = {
+type TitleProps = {
 	children: React.ReactNode;
 };
 
-export const Heading = ({ children }: HeadingProps) => {
+export const Title = ({ children }: TitleProps) => {
 	return (
 		<>
-			<h2 className={styles.heading}>{children}</h2>
+			<h1 className={styles.title}>{children}</h1>
 		</>
 	);
 };
