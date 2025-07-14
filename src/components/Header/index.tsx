@@ -1,16 +1,11 @@
-import { TimerIcon } from 'lucide-react';
-import { Title } from '../Title';
 import { Heading } from '../Heading';
-import styles from './styles.module.css';
 import { Menu } from '../Menu';
+import { Logo } from '../Logo';
 
 export const Header = () => {
 	return (
 		<>
-			<div className={styles.timerIcon}>
-				<TimerIcon />
-			</div>
-			<Title>Chronos</Title>
+			<Logo />
 			<Menu />
 			<Heading>Home</Heading>
 		</>

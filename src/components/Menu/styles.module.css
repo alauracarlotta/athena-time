@@ -1,4 +1,27 @@
 .menu {
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
+	margin: 2rem 0;
+	gap: 2rem;
+	padding-top: 2rem;
+}
+
+.menuLink {
+	background-color: var(--primary);
+	color: var(--text-over-primary);
+	border-radius: 1rem;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	transition: filter 200ms ease-in-out;
+}
+
+.menuLink:hover {
+	filter: brightness(70%);
+}
+
+.menuLink svg {
+	width: 2rem;
+	height: 2rem;
+	margin: 1rem;
 }
