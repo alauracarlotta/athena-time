@@ -7,9 +7,9 @@
 	font-weight: bolder;
 	align-items: center;
 	padding-top: 3.2rem;
-	transition: filter 200ms ease-in-out;
 	margin: 0 auto;
 	width: max-content;
+	transition: filter 200ms ease-in-out;
 }
 
 .logoLink:hover {

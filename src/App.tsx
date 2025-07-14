@@ -4,6 +4,7 @@ import { Container } from './components/Container/';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Main } from './components/Main';
+import { CountDown } from './components/CountDown';
 
 export function App() {
 	return (
@@ -11,6 +12,7 @@ export function App() {
 			<div className='container-fluid'>
 				<Container>
 					<Header />
+					<CountDown />
 					<Main>
 						<div>FORMULÁRIO</div>
 						<div>
