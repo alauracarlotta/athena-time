@@ -1,0 +1,40 @@
+.formRow {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1.6rem;
+}
+
+.inputDefault {
+	background-color: transparent;
+	padding: 1rem;
+	font-size: 1.8rem;
+	color: var(--text-default);
+	text-align: center;
+	outline: none;
+	border: 0.2rem solid transparent;
+	border-bottom: 0.2rem solid var(--primary);
+	transition: all 100ms ease-in-out;
+}
+
+.inputDefault:focus {
+	border-radius: 1rem;
+	box-sizing: border-box;
+	border: 0.2rem solid var(--primary);
+}
+
+.inputDefault::placeholder {
+	color: var(--gray-300);
+	font-style: italic;
+	font-size: 1.4rem;
+}
+
+.inputDefault:disabled {
+	border-bottom: 0.2rem solid var(--disabled);
+	color: var(--text-muted);
+}
+
+.labelText {
+	font-size: 2rem;
+}

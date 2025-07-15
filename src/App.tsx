@@ -1,10 +1,14 @@
-import './styles/theme.css';
-import './styles/global.css';
 import { Container } from './components/Container/';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Main } from './components/Main';
 import { CountDown } from './components/CountDown';
+import { InputButton } from './components/InputButton';
+
+import './styles/global.css';
+import './styles/theme.css';
+import styles from './components/Main/styles.module.css';
+import { PomodoroCicles } from './components/PomodoroCicles';
 
 export function App() {
 	return (
@@ -14,14 +18,25 @@ export function App() {
 					<Header />
 					<CountDown />
 					<Main>
-						<div>FORMULÁRIO</div>
-						<div>
-							Lorem ipsum dolor sit amet, consectetur adipisicing
-							elit. Repellat laudantium totam nemo atque
-							voluptatum libero doloribus doloremque cumque
-							nostrum aliquam architecto distinctio facere,
-							dignissimos optio veritatis dicta quaerat amet sit!
-						</div>
+						<form className={styles.form} action=''>
+							<InputButton
+								labelText='Task:'
+								id='inputTask'
+								type='text'
+								placeholder='Ex.: Estudar para a prova'
+								alt={`botão de input que recebe o nome da 
+									atividade que será executada no pomodoro 
+									vigente`}
+								required
+							/>
+							<div className={styles.formRow}>
+								<p>Lorem ipsum dolor sit amet.</p>
+							</div>
+							<PomodoroCicles />
+							<div className={styles.formRow}>
+								<button>Enviar</button>
+							</div>
+						</form>
 					</Main>
 					<Footer>FOOTER</Footer>
 				</Container>

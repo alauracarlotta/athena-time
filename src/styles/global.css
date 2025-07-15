@@ -20,3 +20,29 @@ body {
 .container-fluid {
 	max-width: auto;
 }
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.formRow {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1.6rem;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.green {
+	background-color: green;
+}
+
+.blue {
+	background-color: var(--info);
+}

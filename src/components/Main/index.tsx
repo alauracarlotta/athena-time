@@ -14,14 +14,3 @@ export const Main = ({ children }: MainProps) => {
 		</>
 	);
 };
-
-// desestruturação (descompactar arquivos js)
-/* export const Heading = (props: HeadingProps) => {
-	const { children } = props;
-
-	return (
-		< NOTE FRAGMENT>
-			<h1 className={styles.heading}>{children}</h1>
-		</FRAGMENT>
-	);
-}; */
