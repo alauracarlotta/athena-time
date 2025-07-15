@@ -2,11 +2,6 @@
 	margin: 0 auto;
 }
 
-.form {
-	flex-direction: column;
-	gap: 2.4rem;
-}
-
 .formRow {
 	display: flex;
 	flex-direction: column;

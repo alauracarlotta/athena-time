@@ -25,6 +25,8 @@ form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	gap: 2.4rem;
 }
 
 .formRow {
@@ -32,17 +34,26 @@ form {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 1.6rem;
 }
 
-.yellow {
+.workTime {
 	background-color: yellow;
 }
 
-.green {
+.shortBreak {
 	background-color: green;
 }
 
-.blue {
+.longBreak {
 	background-color: var(--info);
+}
+
+.playButton {
+	background-color: var(--primary);
+	color: var(--text-over-primary);
+}
+
+.stopButton {
+	background-color: var(--error);
+	color: var(--text-over-error);
 }

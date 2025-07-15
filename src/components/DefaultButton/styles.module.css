@@ -1,0 +1,32 @@
+.formRow {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1.6rem;
+	margin-bottom: 2rem;
+}
+
+.defaultButton {
+	border: none;
+	outline: none;
+	width: clamp(12.8rem, 25vw, 25.6rem);
+	padding: 0.4rem;
+	border-radius: 0.8rem;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	margin: 3.2rem;
+	transition: filter 100ms ease-in-out;
+}
+
+.defaultButton:hover {
+	filter: brightness(80%);
+}
+
+.defaultButton svg {
+	width: 3.2rem;
+	height: 3.2rem;
+}

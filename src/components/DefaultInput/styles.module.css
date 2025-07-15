@@ -6,7 +6,7 @@
 	gap: 1.6rem;
 }
 
-.inputDefault {
+.defaultInput {
 	background-color: transparent;
 	padding: 1rem;
 	font-size: 1.8rem;
@@ -18,13 +18,13 @@
 	transition: all 100ms ease-in-out;
 }
 
-.inputDefault:focus {
+.defaultInput:focus {
 	border-radius: 1rem;
 	box-sizing: border-box;
 	border: 0.2rem solid var(--primary);
 }
 
-.inputDefault::placeholder {
+.defaultInput::placeholder {
 	color: var(--gray-300);
 	font-style: italic;
 	font-size: 1.4rem;

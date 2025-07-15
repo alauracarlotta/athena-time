@@ -8,14 +8,14 @@ export const PomodoroCicles = () => {
 			<div className={styles.formRow}>
 				<div className={styles.ciclesTitle}>Ciclos:</div>
 				<div className={styles.ciclesContent}>
-					<Cicle classColor='yellow' />
-					<Cicle classColor='green' />
-					<Cicle classColor='yellow' />
-					<Cicle classColor='green' />
-					<Cicle classColor='yellow' />
-					<Cicle classColor='green' />
-					<Cicle classColor='yellow' />
-					<Cicle classColor='blue' />
+					<Cicle rangeTime='workTime' />
+					<Cicle rangeTime='shortBreak' />
+					<Cicle rangeTime='workTime' />
+					<Cicle rangeTime='shortBreak' />
+					<Cicle rangeTime='workTime' />
+					<Cicle rangeTime='shortBreak' />
+					<Cicle rangeTime='workTime' />
+					<Cicle rangeTime='longBreak' />
 				</div>
 			</div>
 		</>

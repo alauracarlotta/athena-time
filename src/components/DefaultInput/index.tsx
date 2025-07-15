@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
-
-type InputButtonProps = {
+import '../../styles/global.css';
+type DefaultInputProps = {
 	id: string;
 	labelText?: string;
 	type: 'text' | 'number' | 'search';
@@ -9,12 +9,12 @@ type InputButtonProps = {
 
 // | Union type
 // & Intersection
-export const InputButton = ({
+export const DefaultInput = ({
 	id,
 	type,
 	labelText,
 	...rest
-}: InputButtonProps) => {
+}: DefaultInputProps) => {
 	return (
 		<>
 			<div className={styles.formRow}>
@@ -29,7 +29,7 @@ export const InputButton = ({
 					</label>
 				)}
 				<input
-					className={styles.inputDefault}
+					className={styles.defaultInput}
 					id={id}
 					type={type}
 					{...rest}

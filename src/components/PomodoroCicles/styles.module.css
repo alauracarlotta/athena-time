@@ -1,29 +1,14 @@
 .formRow {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1.6rem;
 	margin-top: 2rem;
+	text-align: center;
 }
 
 .ciclesTitle {
 	font-size: 2rem;
+	padding: 1rem;
 }
 
 .ciclesContent {
 	display: inline-flex;
 	gap: 0.4rem;
-}
-
-.yellow {
-	background-color: yellow;
-}
-
-.green {
-	background-color: green;
-}
-
-.blue {
-	background-color: var(--info);
 }

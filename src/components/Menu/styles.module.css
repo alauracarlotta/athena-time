@@ -9,7 +9,7 @@
 .menuLink {
 	background-color: var(--primary);
 	color: var(--text-over-primary);
-	border-radius: 1rem;
+	border-radius: 0.8rem;
 	align-items: center;
 	justify-content: center;
 	display: flex;

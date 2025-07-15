@@ -1,4 +1,4 @@
-import { HouseIcon, Settings, SunIcon, History } from 'lucide-react';
+import { HouseIcon, SettingsIcon, SunIcon, HistoryIcon } from 'lucide-react';
 import styles from './styles.module.css';
 
 export const Menu = () => {
@@ -9,10 +9,10 @@ export const Menu = () => {
 					<HouseIcon />
 				</a>
 				<a className={styles.menuLink} href='#'>
-					<History />
+					<HistoryIcon />
 				</a>
 				<a className={styles.menuLink} href='#'>
-					<Settings />
+					<SettingsIcon />
 				</a>
 				<a className={styles.menuLink} href='#'>
 					<SunIcon />
