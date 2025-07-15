@@ -6,7 +6,7 @@ import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { PomodoroCicles } from './components/PomodoroCicles';
 import { DefaultButton } from './components/DefaultButton';
-import { CirclePlayIcon, StopCircleIcon } from 'lucide-react';
+import { CirclePlayIcon } from 'lucide-react';
 
 import styles from './components/Main/styles.module.css';
 import './styles/global.css';
@@ -40,15 +40,9 @@ export function App() {
 								color='playButton'
 								icon={<CirclePlayIcon />}
 							/>
-
-							<DefaultButton
-								type='submit'
-								color='stopButton'
-								icon={<StopCircleIcon />}
-							/>
 						</form>
 					</Main>
-					<Footer>FOOTER</Footer>
+					<Footer />
 				</Container>
 			</div>
 		</>
