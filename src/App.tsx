@@ -11,18 +11,33 @@ import { CirclePlayIcon } from 'lucide-react';
 import styles from './components/Main/styles.module.css';
 import './styles/global.css';
 import './styles/theme.css';
+import { useState } from 'react';
 
 export function App() {
+	const [number, setNumber] = useState(() => {
+		// lazy initialization
+		return 0;
+	});
+
+	// const [number, setNumber] = useState(0);
+
+	const handleClick = () => {
+		console.log(number);
+		setNumber(prevNumber => prevNumber + 1);
+	};
+
 	return (
 		<>
 			<div className='container-fluid'>
+				<div> Número: {number}</div>
+				<button onClick={handleClick}>Aumenta</button>
 				<Container>
 					<Header />
 					<CountDown />
 					<Main>
 						<form action=''>
 							<DefaultInput
-								labelText='Task:'
+								labelText={number.toString()}
 								id='inputTask'
 								type='text'
 								placeholder='Ex.: Estudar para a prova'
