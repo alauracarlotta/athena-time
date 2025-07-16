@@ -1,0 +1,21 @@
+.formRow {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.ciclesTitle {
+	font-size: 2rem;
+	padding: 1rem;
+}
+
+.ciclesContent {
+	display: inline-flex;
+	gap: 0.4rem;
+}
+
+/* .formRow {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+} */

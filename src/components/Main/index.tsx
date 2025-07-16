@@ -8,9 +8,7 @@ type MainProps = {
 export const Main = ({ children }: MainProps) => {
 	return (
 		<>
-			<div className={styles.main}>
-				<p>{children}</p>
-			</div>
+			<div className={styles.main}>{children}</div>
 		</>
 	);
 };

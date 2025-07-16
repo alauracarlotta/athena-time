@@ -1,6 +1,5 @@
 import { Cicle } from '../Cicle';
 import styles from './styles.module.css';
-import '../../styles/global.css';
 
 export const PomodoroCicles = () => {
 	return (

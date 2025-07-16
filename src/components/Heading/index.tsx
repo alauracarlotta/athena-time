@@ -2,13 +2,17 @@ import type React from 'react';
 import styles from './styles.module.css';
 
 type HeadingProps = {
-	children: React.ReactNode;
+	titlePage?: string;
+	children?: React.ReactNode;
+	styleItalic?: string;
 };
 
-export const Heading = ({ children }: HeadingProps) => {
+export const Heading = ({ styleItalic, titlePage, children }: HeadingProps) => {
 	return (
 		<>
-			<h2 className={styles.heading}>{children}</h2>
+			<h2 className={`${styles.heading} ${styleItalic}`}>
+				{titlePage || children}
+			</h2>
 		</>
 	);
 };

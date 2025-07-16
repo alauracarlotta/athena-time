@@ -7,7 +7,7 @@ export const Header = () => {
 		<>
 			<Logo />
 			<Menu />
-			<Heading>Home</Heading>
+			<Heading />
 		</>
 	);
 };

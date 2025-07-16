@@ -57,3 +57,7 @@ form {
 	background-color: var(--error);
 	color: var(--text-over-error);
 }
+
+.headingItalic {
+	font-style: italic;
+}
