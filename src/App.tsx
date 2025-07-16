@@ -1,11 +1,9 @@
-// import { AboutPomodoro } from './Pages/AboutPomodoro';
-import { Error } from './Pages/Error';
-// import { Home } from './Pages/Home';
+import { Home } from './pages/Home';
 
 export function App() {
 	return (
 		<>
-			<Error />
+			<Home />
 		</>
 	);
 }

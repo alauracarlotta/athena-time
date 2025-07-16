@@ -1,4 +1,4 @@
-import { MainTemplate } from '../../Templates/MainTemplate';
+import { MainTemplate } from '../../templates/MainTemplate';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
 
