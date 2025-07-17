@@ -4,8 +4,10 @@ import { DefaultButton } from '../DefaultButton';
 import { CirclePlayIcon } from 'lucide-react';
 
 import styles from './styles.module.css';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 
 export const MainForm = () => {
+	const { state } = useTaskContext();
 	return (
 		<>
 			<form action=''>
@@ -20,7 +22,10 @@ export const MainForm = () => {
 					required
 				/>
 				<div className={styles.formRow}>
-					<p>Lorem ipsum dolor sit amet.</p>
+					<p>
+						Você está na sessão de trabalho de{' '}
+						{state.config.workTime} min.
+					</p>
 				</div>
 				<PomodoroCicles />
 				<DefaultButton
