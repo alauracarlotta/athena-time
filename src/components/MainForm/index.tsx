@@ -1,31 +1,39 @@
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { getNextCycle } from '../../utils/getNextCycle';
+import { getNextType } from '../../utils/getNextType';
 import { DefaultInput } from '../DefaultInput';
 import { PomodoroCicles } from '../PomodoroCicles';
 import { DefaultButton } from '../DefaultButton';
 import { CirclePlayIcon } from 'lucide-react';
+import { useRef } from 'react';
 
 import styles from './styles.module.css';
-import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
-import type React from 'react';
-import { useRef } from 'react';
+
 import type { TaskModel } from '../../models/TaskModel';
+import type React from 'react';
 
 export const MainForm = () => {
-	const { state, setState } = useTaskContext();
 	// const [taskName, setTaskName] = useState('');
+	const { state, setState } = useTaskContext();
 	const taskNameCurrent = useRef<HTMLInputElement>(null);
+
+	// ciclos
+	const nextCycle = getNextCycle(state.currentCycle);
+
+	// tipo de atividade
+	const nextType = getNextType(nextCycle);
 
 	const handleCreateNewTask = (event: React.FormEvent) => {
 		event.preventDefault();
 
 		if (taskNameCurrent === null) return;
 
-		const taskName = taskNameCurrent.current.value.trim();
+		const taskName = taskNameCurrent.current?.value.trim();
 
 		if (!taskName) {
 			alert('Digite o nome da tarefa');
 			return;
 		}
-		console.log(taskName, 'task name');
 
 		const newTask: TaskModel = {
 			id: Date.now().toString(),
@@ -33,8 +41,8 @@ export const MainForm = () => {
 			startDate: Date.now(),
 			completeDate: null,
 			interruptDate: null,
-			duration: 1, //como se fosse 1 min
-			type: 'workTime',
+			duration: state.config[nextType],
+			type: nextType,
 		};
 
 		const secondsRemaining = newTask.duration * 60;
@@ -43,8 +51,8 @@ export const MainForm = () => {
 			return {
 				...prevState,
 				activeTask: newTask, // task que eu tô criando agora
-				currentCycle: 1, // TODO
-				secondsRemaining, // TODO
+				currentCycle: nextCycle,
+				secondsRemaining, // TODO <== PRÓXIMA AULA
 				formattedSecondsRemaining: '00:00', // TODO
 				tasks: [...prevState.tasks, newTask],
 				config: { ...prevState.config },
