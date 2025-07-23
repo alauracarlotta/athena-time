@@ -1,10 +1,11 @@
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextType } from '../../utils/getNextType';
+import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 import { DefaultInput } from '../DefaultInput';
 import { PomodoroCicles } from '../PomodoroCicles';
 import { DefaultButton } from '../DefaultButton';
-import { CirclePlayIcon } from 'lucide-react';
+import { CirclePlayIcon, CircleStopIcon } from 'lucide-react';
 import { useRef } from 'react';
 
 import styles from './styles.module.css';
@@ -52,10 +53,32 @@ export const MainForm = () => {
 				...prevState,
 				activeTask: newTask, // task que eu tô criando agora
 				currentCycle: nextCycle,
-				secondsRemaining, // TODO <== PRÓXIMA AULA
-				formattedSecondsRemaining: '00:00', // TODO
+				secondsRemaining,
+				formattedSecondsRemaining:
+					formatSecondsToMinutes(secondsRemaining),
 				tasks: [...prevState.tasks, newTask],
 				config: { ...prevState.config },
+			};
+		});
+	};
+
+	const handleClickInterruptTask = (event: React.MouseEvent) => {
+		event.preventDefault();
+		setState(prevState => {
+			return {
+				...prevState,
+				activeTask: null,
+				secondsRemaining: 0,
+				formattedSecondsRemaining: '00:00',
+				tasks: prevState.tasks.map(task => {
+					if (prevState.activeTask?.id === task.id) {
+						return {
+							...task,
+							interruptDate: Date.now(),
+						};
+					}
+					return task;
+				}),
 			};
 		});
 	};
@@ -74,6 +97,7 @@ export const MainForm = () => {
 					// value={taskName}
 					// onChange={e => setTaskName(e.target.value)}
 					ref={taskNameCurrent}
+					disabled={!!state.activeTask}
 					required
 				/>
 				<div className={styles.formRow}>
@@ -82,13 +106,29 @@ export const MainForm = () => {
 						{state.config.workTime} min.
 					</p>
 				</div>
-				<PomodoroCicles />
-				<DefaultButton
-					/* onClick={handleClickSubmitForm} */
-					type='submit'
-					color='playButton'
-					icon={<CirclePlayIcon />}
-				/>
+				{state.currentCycle > 0 && <PomodoroCicles />}
+				{!state.activeTask && (
+					<DefaultButton
+						type='submit'
+						color='playButton'
+						aria-label='Iniciar nova tarefa'
+						title='Iniciar nova tarefa'
+						key={'submit_button'}
+						icon={<CirclePlayIcon />}
+					/>
+				)}
+
+				{!!state.activeTask && (
+					<DefaultButton
+						onClick={handleClickInterruptTask}
+						type='button'
+						color='stopButton'
+						aria-label='Interromper tarefa atual'
+						title='Interromper tarefa atual'
+						key={'interrupt_button'}
+						icon={<CircleStopIcon />}
+					/>
+				)}
 			</form>
 		</>
 	);

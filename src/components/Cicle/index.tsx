@@ -1,12 +1,13 @@
+import type React from 'react';
 import styles from './styles.module.css';
 
 type CicleProps = {
 	rangeTime: 'workTime' | 'shortBreak' | 'longBreak';
-};
-export const Cicle = (prop: CicleProps) => {
+} & React.ComponentProps<'div'>;
+export const Cicle = ({ rangeTime, ...props }: CicleProps) => {
 	return (
 		<>
-			<div className={`${styles.cicle} ${prop.rangeTime}`}></div>
+			<div className={`${styles.cicle} ${rangeTime}`} {...props}></div>
 		</>
 	);
 };
