@@ -1,11 +1,12 @@
+import { CirclePlayIcon, CircleStopIcon } from 'lucide-react';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextType } from '../../utils/getNextType';
-import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 import { DefaultInput } from '../DefaultInput';
 import { PomodoroCicles } from '../PomodoroCicles';
 import { DefaultButton } from '../DefaultButton';
-import { CirclePlayIcon, CircleStopIcon } from 'lucide-react';
+import { Tips } from '../Tips';
 import { useRef } from 'react';
 
 import styles from './styles.module.css';
@@ -15,13 +16,11 @@ import type React from 'react';
 
 export const MainForm = () => {
 	// const [taskName, setTaskName] = useState('');
-	const { state, setState } = useTaskContext();
+	const { state, dispatch } = useTaskContext();
 	const taskNameCurrent = useRef<HTMLInputElement>(null);
 
-	// ciclos
+	// ciclos | tipo de atividade
 	const nextCycle = getNextCycle(state.currentCycle);
-
-	// tipo de atividade
 	const nextType = getNextType(nextCycle);
 
 	const handleCreateNewTask = (event: React.FormEvent) => {
@@ -46,41 +45,12 @@ export const MainForm = () => {
 			type: nextType,
 		};
 
-		const secondsRemaining = newTask.duration * 60;
-
-		setState(prevState => {
-			return {
-				...prevState,
-				activeTask: newTask, // task que eu tô criando agora
-				currentCycle: nextCycle,
-				secondsRemaining,
-				formattedSecondsRemaining:
-					formatSecondsToMinutes(secondsRemaining),
-				tasks: [...prevState.tasks, newTask],
-				config: { ...prevState.config },
-			};
-		});
+		dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
 	};
 
 	const handleClickInterruptTask = (event: React.MouseEvent) => {
 		event.preventDefault();
-		setState(prevState => {
-			return {
-				...prevState,
-				activeTask: null,
-				secondsRemaining: 0,
-				formattedSecondsRemaining: '00:00',
-				tasks: prevState.tasks.map(task => {
-					if (prevState.activeTask?.id === task.id) {
-						return {
-							...task,
-							interruptDate: Date.now(),
-						};
-					}
-					return task;
-				}),
-			};
-		});
+		dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
 	};
 
 	return (
@@ -101,10 +71,7 @@ export const MainForm = () => {
 					required
 				/>
 				<div className={styles.formRow}>
-					<p>
-						Você está na sessão de trabalho de{' '}
-						{state.config.workTime} min.
-					</p>
+					<Tips />
 				</div>
 				{state.currentCycle > 0 && <PomodoroCicles />}
 				{!state.activeTask && (
