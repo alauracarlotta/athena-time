@@ -13,6 +13,7 @@ import styles from './styles.module.css';
 
 import type { TaskModel } from '../../models/TaskModel';
 import type React from 'react';
+// import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
 
 export const MainForm = () => {
 	// const [taskName, setTaskName] = useState('');
@@ -46,6 +47,14 @@ export const MainForm = () => {
 		};
 
 		dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+
+		/* const worker = TimerWorkerManager.getInstance();
+
+		worker.postMessage('Maria do bairro');
+
+		worker.onmessage(event => {
+			console.log('recebi', event.data);
+		}); */
 	};
 
 	const handleClickInterruptTask = (event: React.MouseEvent) => {
