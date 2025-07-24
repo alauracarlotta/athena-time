@@ -1,14 +1,6 @@
 let isRunning = false;
 
 self.onmessage = function (event) {
-	/* console.log('uiiiiiiiiiiiii', event.data);
-
-	switch (event.data) {
-		case 'Maria do bairro':
-			self.postMessage('Soooooooy');
-			break;
-	} */
-
 	if (isRunning) return;
 
 	isRunning = true;
