@@ -13,6 +13,7 @@ import styles from './styles.module.css';
 
 import type { TaskModel } from '../../models/TaskModel';
 import type React from 'react';
+import { toast } from 'react-toastify';
 // import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
 
 export const MainForm = () => {
@@ -23,7 +24,7 @@ export const MainForm = () => {
 	// ciclos | tipo de atividade
 	const nextCycle = getNextCycle(state.currentCycle);
 	const nextType = getNextType(nextCycle);
-
+	const notify = () => toast('⚠️ Preencha o campo!');
 	const handleCreateNewTask = (event: React.FormEvent) => {
 		event.preventDefault();
 
@@ -32,7 +33,8 @@ export const MainForm = () => {
 		const taskName = taskNameCurrent.current?.value.trim();
 
 		if (!taskName) {
-			alert('Digite o nome da tarefa');
+			// alert('Digite o nome da tarefa');
+			toast.warn('Preencha o campo!');
 			return;
 		}
 
@@ -83,6 +85,7 @@ export const MainForm = () => {
 						title='Iniciar nova tarefa'
 						key={'submit_button'}
 						icon={<CirclePlayIcon />}
+						onClick={notify}
 					/>
 				)}
 
