@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 
 import type { TaskModel } from '../../models/TaskModel';
 import type React from 'react';
-import { toast } from 'react-toastify';
+import { MessageToastifyWrapper } from '../../adapters/MessageToastifyWrapper';
 // import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
 
 export const MainForm = () => {
@@ -24,9 +24,9 @@ export const MainForm = () => {
 	// ciclos | tipo de atividade
 	const nextCycle = getNextCycle(state.currentCycle);
 	const nextType = getNextType(nextCycle);
-	const notify = () => toast('⚠️ Preencha o campo!');
 	const handleCreateNewTask = (event: React.FormEvent) => {
 		event.preventDefault();
+		MessageToastifyWrapper.dismiss();
 
 		if (taskNameCurrent === null) return;
 
@@ -34,7 +34,8 @@ export const MainForm = () => {
 
 		if (!taskName) {
 			// alert('Digite o nome da tarefa');
-			toast.warn('Preencha o campo!');
+			taskNameCurrent.current?.focus();
+			MessageToastifyWrapper.warn('Preencha o campo!');
 			return;
 		}
 
@@ -49,10 +50,13 @@ export const MainForm = () => {
 		};
 
 		dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+		MessageToastifyWrapper.success('Tarefa Iniciada!');
 	};
 
 	const handleClickInterruptTask = (event: React.MouseEvent) => {
 		event.preventDefault();
+		MessageToastifyWrapper.dismiss();
+		MessageToastifyWrapper.error('Tarefa interrompida!');
 		dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
 	};
 
@@ -71,7 +75,6 @@ export const MainForm = () => {
 					// onChange={e => setTaskName(e.target.value)}
 					ref={taskNameCurrent}
 					disabled={!!state.activeTask}
-					required
 				/>
 				<div className={styles.formRow}>
 					<Tips />
@@ -85,7 +88,6 @@ export const MainForm = () => {
 						title='Iniciar nova tarefa'
 						key={'submit_button'}
 						icon={<CirclePlayIcon />}
-						onClick={notify}
 					/>
 				)}
 
