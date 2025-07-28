@@ -5,6 +5,7 @@ import { TaskContext } from './taskContextCreate';
 import { taskReducer } from './taskReducer';
 import { TaskActionTypes } from './taskAction';
 import { loadSound } from '../../utils/loadSound';
+import { TaskStateModel } from '../../models/TaskStateModel';
 
 type TaskContextProviderprops = {
 	children: React.ReactNode;
@@ -12,7 +13,21 @@ type TaskContextProviderprops = {
 
 // 1 - Precisa usar esse Provider(contexto)...
 export const TaskContextProvider = ({ children }: TaskContextProviderprops) => {
-	const [state, dispatch] = useReducer(taskReducer, initialTaskState);
+	const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
+		const storageState = localStorage.getItem('state');
+
+		if (storageState === null) return initialTaskState;
+
+		const parseStorageState = JSON.parse(storageState) as TaskStateModel;
+		console.log(parseStorageState);
+
+		return {
+			...parseStorageState,
+			activeTask: null,
+			secondsRemaining: 0,
+			formattedSecondsRemaining: '00:00',
+		};
+	});
 	const playSound = useRef<() => void | null>(null);
 	const worker = TimerWorkerManager.getInstance();
 
@@ -37,6 +52,8 @@ export const TaskContextProvider = ({ children }: TaskContextProviderprops) => {
 	});
 
 	useEffect(() => {
+		localStorage.setItem('state', JSON.stringify(state));
+
 		if (!state.activeTask) {
 			worker.terminate();
 		}
