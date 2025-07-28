@@ -14,14 +14,16 @@
 	text-align: center;
 	outline: none;
 	border: 0.2rem solid transparent;
-	border-bottom: 0.2rem solid var(--primary);
+	border-bottom: 0.2rem solid
+		var(--primary);
 	transition: all 100ms ease-in-out;
 }
 
 .defaultInput:focus {
 	border-radius: 1rem;
 	box-sizing: border-box;
-	border: 0.2rem solid var(--primary);
+	border: 0.2rem solid
+		var(--primary);
 }
 
 .defaultInput::placeholder {
@@ -30,9 +32,16 @@
 	font-size: 1.4rem;
 }
 
-.inputDefault:disabled {
-	border-bottom: 0.2rem solid var(--disabled);
+.defaultInput:disabled {
+	border-bottom: 0.2rem solid
+		var(--disabled);
 	color: var(--text-muted);
+	font-style: italic;
+}
+
+.defaultInput:default {
+	color: var(--text-muted);
+	font-style: italic;
 }
 
 .labelText {

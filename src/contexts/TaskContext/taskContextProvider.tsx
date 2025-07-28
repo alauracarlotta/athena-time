@@ -41,6 +41,8 @@ export const TaskContextProvider = ({ children }: TaskContextProviderprops) => {
 			worker.terminate();
 		}
 
+		document.title = `${state.formattedSecondsRemaining} - Athena Timer`;
+
 		worker.postMessage(state);
 	}, [state, worker]);
 
