@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import styles from './styles.module.css';
 import React, { useEffect, useState } from 'react';
+import { RouterLink } from '../RouterLink';
 
 type Themes = 'dark' | 'light';
 
@@ -38,30 +39,29 @@ export const Menu = () => {
 	return (
 		<>
 			<nav className={styles.menu}>
-				<a
+				<RouterLink
 					className={styles.menuLink}
-					href='#'
+					href='/'
 					aria-label='Ir para a página inicial'
 					title='Home'>
 					<HouseIcon />
-				</a>
-				<a
+				</RouterLink>
+				<RouterLink
 					className={styles.menuLink}
-					href='#'
+					href='/history/'
 					aria-label='Exibir histórico de pomodoros e pausas'
 					title='Histórico'>
 					<HistoryIcon />
-				</a>
-				<a
+				</RouterLink>
+				<RouterLink
 					className={styles.menuLink}
-					href='#'
+					href='/settings/'
 					aria-label='Configurações da aplicação'
 					title='Configurações'>
 					<SettingsIcon />
-				</a>
+				</RouterLink>
 				<a
 					className={styles.menuLink}
-					href='#'
 					aria-label='Mudar Tema para modo claro ou escuro'
 					title='Tema'
 					onClick={handleChangeTheme}>

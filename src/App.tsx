@@ -1,6 +1,6 @@
 import { MessagesContainer } from './components/MessagesContainer';
 import { TaskContextProvider } from './contexts/TaskContext/taskContextProvider';
-import { Home } from './pages/Home';
+import { MainRouter } from './routers/MainRouter';
 
 // [EVITAAAAR] prop driling
 
@@ -9,7 +9,7 @@ export function App() {
 		<>
 			<TaskContextProvider>
 				<MessagesContainer>
-					<Home />
+					<MainRouter />
 				</MessagesContainer>
 			</TaskContextProvider>
 		</>
