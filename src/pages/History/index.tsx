@@ -1,31 +1,24 @@
+/*** /templates ***/
 import { MainTemplate } from '../../templates/MainTemplate';
+
+/*** /components ***/
 import { Heading } from '../../components/Heading';
-import { TrashIcon } from 'lucide-react';
 import { DefaultButton } from '../../components/DefaultButton';
 
-import styles from './styles.module.css';
+/*** /contexts ***/
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 
-const typeTask = {
-	workTime: 'Foco',
-	shortBreak: 'Pausa Curta',
-	longBreak: 'Pausa Longa',
-};
+/*** /utils ***/
+import { formatDate } from '../../utils/formatDate';
+import { getTaskStatus } from '../../utils/getTaskStatus';
+import { typeTaskDictionary } from '../../utils/typeTaskDictionary';
+
+/*** ./styles - lucide ***/
+import { TrashIcon } from 'lucide-react';
+import styles from './styles.module.css';
+
 export function History() {
 	const { state } = useTaskContext();
-
-	const timestamp = (id: number) => {
-		const date = new Date(state.tasks[id].startDate);
-		const dateFormatted = date.toLocaleString('pt-BR');
-
-		return dateFormatted.replace(',', ' ');
-	};
-
-	const statusTask = (id: number) => {
-		if (state.tasks[id].completeDate) return 'Completa';
-		if (state.tasks[id].interruptDate) return 'Interrompida';
-		return 'Abandonada';
-	};
 
 	const handleClickExcludeHistory = () => {
 		localStorage.removeItem('state');
@@ -47,14 +40,19 @@ export function History() {
 							</tr>
 						</thead>
 						<tbody>
-							{state.tasks.map((task, id) => {
+							{state.tasks.map(task => {
 								return (
 									<tr key={task.id}>
 										<td>{task.name}</td>
 										<td>{task.duration}</td>
-										<td>{timestamp(id)}</td>
-										<td>{statusTask(id)}</td>
-										<td>{typeTask[task.type]}</td>
+										<td>{formatDate(task.startDate)}</td>
+										<td>
+											{getTaskStatus(
+												task,
+												state.activeTask,
+											)}
+										</td>
+										<td>{typeTaskDictionary[task.type]}</td>
 									</tr>
 								);
 							})}
