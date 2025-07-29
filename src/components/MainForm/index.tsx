@@ -84,6 +84,7 @@ export const MainForm = () => {
 						title='Iniciar nova tarefa'
 						key={'submit_button'}
 						icon={<CirclePlayIcon />}
+						generic={styles.generic}
 					/>
 				)}
 
@@ -96,6 +97,7 @@ export const MainForm = () => {
 						title='Interromper tarefa atual'
 						key={'interrupt_button'}
 						icon={<CircleStopIcon />}
+						generic={styles.generic}
 					/>
 				)}
 			</form>

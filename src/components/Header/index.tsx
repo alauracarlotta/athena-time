@@ -1,4 +1,3 @@
-import { Heading } from '../Heading';
 import { Menu } from '../Menu';
 import { Logo } from '../Logo';
 
@@ -7,7 +6,6 @@ export const Header = () => {
 		<>
 			<Logo />
 			<Menu />
-			<Heading />
 		</>
 	);
 };
