@@ -5,6 +5,7 @@ type DefaultButtonProps = {
 	type: 'button' | 'reset' | 'submit';
 	color?: 'playButton' | 'stopButton';
 	icon: React.ReactNode;
+	generic?: string;
 } & React.ComponentProps<'button'>;
 
 // | Union type
@@ -13,11 +14,12 @@ export const DefaultButton = ({
 	type,
 	color = 'playButton',
 	icon,
+	generic,
 	...props
 }: DefaultButtonProps) => {
 	return (
 		<>
-			<div className={styles.formRow}>
+			<div className={generic}>
 				<button
 					className={`${styles.defaultButton} ${color}`}
 					type={type}

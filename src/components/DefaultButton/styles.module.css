@@ -1,16 +1,7 @@
-.formRow {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1.6rem;
-	margin-bottom: 2rem;
-}
-
 .defaultButton {
 	border: none;
 	outline: none;
-	width: clamp(
+	min-width: clamp(
 		12.8rem,
 		45vw,
 		25.6rem

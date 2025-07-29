@@ -13,9 +13,6 @@
 	gap: 0.4rem;
 }
 
-/* .formRow {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-} */
+.generic {
+	margin-bottom: 2rem;
+}
