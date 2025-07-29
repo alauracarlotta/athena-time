@@ -1,0 +1,46 @@
+.responsiveTable {
+	overflow-x: auto;
+	border-radius: 0.8rem;
+	border: 0.2rem solid
+		var(--gray-800);
+	padding: 1.6rem;
+	margin-top: 4rem;
+}
+
+.responsiveTable table {
+	min-width: 48rem;
+	width: 100%;
+	font-size: 1.6rem;
+	border-collapse: collapse;
+}
+
+.responsiveTable thead {
+	font-style: italic;
+}
+
+.responsiveTable th {
+	background-color: var(
+		var(--gray-600)
+	);
+}
+
+.responsiveTable td {
+	text-align: center;
+	background-color: var(--gray-800);
+}
+
+.responsiveTable th,
+.responsiveTable td {
+	padding: 1rem 0px;
+	border-bottom: 0.2rem solid
+		var(--gray-700);
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: end;
+}
+
+.buttonContainer button {
+	min-width: 2rem;
+}
