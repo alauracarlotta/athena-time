@@ -19,7 +19,7 @@ export const TaskContextProvider = ({ children }: TaskContextProviderprops) => {
 		if (storageState === null) return initialTaskState;
 
 		const parseStorageState = JSON.parse(storageState) as TaskStateModel;
-		console.log(parseStorageState);
+		// console.log(parseStorageState);
 
 		return {
 			...parseStorageState,

@@ -5,6 +5,6 @@ export const loadSound = () => {
 	audio.load();
 	return () => {
 		audio.currentTime = 0;
-		audio.play().catch(error => console.log('Errouuuuuuuu', error));
+		audio.play();
 	};
 };

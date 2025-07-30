@@ -1,0 +1,15 @@
+.sureMessage {
+	text-align: center;
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.buttonContainer button {
+	min-width: 8rem;
+	margin: 2rem;
+	padding: 1rem;
+}
