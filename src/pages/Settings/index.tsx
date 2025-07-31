@@ -9,6 +9,7 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { MessageToastifyWrapper } from '../../adapters/MessageToastifyWrapper';
 import { TaskStateModel } from '../../models/TaskStateModel';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
+import { confirmSettingsInputs } from '../../utils/confirmSettingsInputs';
 // import { TaskStateModel } from '../../models/TaskStateModel';
 // import { TaskModel } from '../../models/TaskModel';
 
@@ -30,8 +31,6 @@ export function Settings() {
 		event.preventDefault();
 		MessageToastifyWrapper.dismiss();
 
-		const formErrors: string[] = [];
-
 		const timeConfig = {
 			workTime: Number(
 				timeSettingsCurrent['workTime'].current?.value.trim(),
@@ -44,36 +43,10 @@ export function Settings() {
 			),
 		};
 
-		Object.entries(timeConfig).forEach(([chave, ref]) => {
-			const valor = ref;
+		// todo fazer validação para salvar apenas com todos os imputs corretos
+		// do /utils/confirmSettingsInputs**93,
 
-			if (!valor) {
-				formErrors.push('Informe um tempo válido para cada campo!');
-			}
-
-			if (chave === 'workTime' && (valor < 1 || valor > 99)) {
-				formErrors.push('Digite um valor entre 1 e 99 para FOCO!');
-			}
-
-			if (chave === 'shortBreak' && (valor < 1 || valor > 30)) {
-				formErrors.push(
-					'Digite um valor entre 1 e 30 para descanso CURTO!',
-				);
-			}
-
-			if (chave === 'longBreak' && (valor < 1 || valor > 60)) {
-				formErrors.push(
-					'Digite um valor entre 1 e 60 para descanso LONGO!',
-				);
-			}
-		});
-
-		if (formErrors.length > 0) {
-			formErrors.forEach(erro => {
-				MessageToastifyWrapper.error(erro);
-			});
-			return;
-		}
+		confirmSettingsInputs(timeConfig);
 
 		const newConfig: TaskStateModel['config'] = {
 			workTime: timeConfig.workTime,
