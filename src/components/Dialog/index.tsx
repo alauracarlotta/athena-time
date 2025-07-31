@@ -12,6 +12,8 @@ export const Dialog = ({ closeToast, data }: ToastContentProps<string>) => {
 					<DefaultButton
 						type='button'
 						color='playButton'
+						aria-label='Botão de confirmação para apagar o histórico'
+						title='Botão de confirmação para apagar o histórico'
 						icon={<ThumbsUpIcon />}
 						onClick={() => {
 							closeToast(true);
@@ -21,6 +23,8 @@ export const Dialog = ({ closeToast, data }: ToastContentProps<string>) => {
 					<DefaultButton
 						type='button'
 						color='stopButton'
+						aria-label='Botão de cancelar confirmação para apagar o histórico'
+						title='Botão de cancelar confirmação para apagar o histórico'
 						icon={<ThumbsDownIcon />}
 						onClick={() => {
 							closeToast(false);

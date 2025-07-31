@@ -72,6 +72,18 @@ export const taskReducer = (
 			};
 		}
 
+		case TaskActionTypes.NEW_SETTINGS: {
+			const newConfig = action.payload;
+			return {
+				...state,
+				config: {
+					workTime: newConfig['workTime'],
+					shortBreak: newConfig['shortBreak'],
+					longBreak: newConfig['longBreak'],
+				},
+			};
+		}
+
 		case TaskActionTypes.RESET: {
 			return {
 				...initialTaskState,

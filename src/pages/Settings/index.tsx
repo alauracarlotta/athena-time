@@ -1,11 +1,150 @@
 import { MainTemplate } from '../../templates/MainTemplate';
 import { Heading } from '../../components/Heading';
+import { DefaultInput } from '../../components/DefaultInput';
+import styles from './styles.module.css';
+import { DefaultButton } from '../../components/DefaultButton';
+import { SaveIcon } from 'lucide-react';
+import React, { useRef } from 'react';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { MessageToastifyWrapper } from '../../adapters/MessageToastifyWrapper';
+import { TaskStateModel } from '../../models/TaskStateModel';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
+// import { TaskStateModel } from '../../models/TaskStateModel';
+// import { TaskModel } from '../../models/TaskModel';
 
 export function Settings() {
+	const { state, dispatch } = useTaskContext();
+	const timeSettingsCurrent = {
+		workTime: useRef<HTMLInputElement>(null),
+		shortBreak: useRef<HTMLInputElement>(null),
+		longBreak: useRef<HTMLInputElement>(null),
+	};
+
+	const timeSettingsDefault = {
+		workTime: state.config.workTime,
+		shortBreak: state.config.shortBreak,
+		longBreak: state.config.longBreak,
+	};
+
+	const handleAdjustSettings = (event: React.FormEvent) => {
+		event.preventDefault();
+		MessageToastifyWrapper.dismiss();
+
+		const formErrors: string[] = [];
+
+		const timeConfig = {
+			workTime: Number(
+				timeSettingsCurrent['workTime'].current?.value.trim(),
+			),
+			shortBreak: Number(
+				timeSettingsCurrent['shortBreak'].current?.value.trim(),
+			),
+			longBreak: Number(
+				timeSettingsCurrent['longBreak'].current?.value.trim(),
+			),
+		};
+
+		Object.entries(timeConfig).forEach(([chave, ref]) => {
+			const valor = ref;
+
+			if (!valor) {
+				formErrors.push('Informe um tempo válido para cada campo!');
+			}
+
+			if (chave === 'workTime' && (valor < 1 || valor > 99)) {
+				formErrors.push('Digite um valor entre 1 e 99 para FOCO!');
+			}
+
+			if (chave === 'shortBreak' && (valor < 1 || valor > 30)) {
+				formErrors.push(
+					'Digite um valor entre 1 e 30 para descanso CURTO!',
+				);
+			}
+
+			if (chave === 'longBreak' && (valor < 1 || valor > 60)) {
+				formErrors.push(
+					'Digite um valor entre 1 e 60 para descanso LONGO!',
+				);
+			}
+		});
+
+		if (formErrors.length > 0) {
+			formErrors.forEach(erro => {
+				MessageToastifyWrapper.error(erro);
+			});
+			return;
+		}
+
+		const newConfig: TaskStateModel['config'] = {
+			workTime: timeConfig.workTime,
+			shortBreak: timeConfig.shortBreak,
+			longBreak: timeConfig.longBreak,
+		};
+
+		dispatch({ type: TaskActionTypes.NEW_SETTINGS, payload: newConfig });
+		MessageToastifyWrapper.success('Configurações salvas com sucesso!');
+	};
+
 	return (
 		<>
 			<MainTemplate>
-				<Heading>Settings</Heading>
+				<Heading>Configurações</Heading>
+				<div className={styles.settingsText}>
+					Configure os tempos de foco, descanso curto e descanso
+					longo.
+				</div>
+				<div className={styles.divFormSettings}>
+					<form onSubmit={handleAdjustSettings} className='form'>
+						<div className={styles.formRow}>
+							<DefaultInput
+								id='workTime'
+								labelText='Foco'
+								type='number'
+								alt='Configuração do Tempo de Trabalho'
+								aria-label='Configuração do Tempo de Trabalho'
+								title='Configuração do Tempo de Trabalho'
+								ref={timeSettingsCurrent['workTime']}
+								defaultValue={timeSettingsDefault['workTime']}
+								min={1}
+								max={99}
+							/>
+						</div>
+						<div className={styles.formRow}>
+							<DefaultInput
+								id='shortBreak'
+								labelText='Descanso Curto'
+								type='number'
+								alt='Configuração do Tempo de Descanso Curto'
+								aria-label='Configuração do Tempo de Descanso Curto'
+								title='Configuração do Tempo de Descanso Curto'
+								ref={timeSettingsCurrent['shortBreak']}
+								defaultValue={timeSettingsDefault['shortBreak']}
+								min={1}
+								max={30}
+							/>
+						</div>
+						<div className={styles.formRow}>
+							<DefaultInput
+								id='longBreak'
+								labelText='Descanso Longo'
+								type='number'
+								alt='Configuração do Tempo de Descanso Longo'
+								aria-label='Configuração do Tempo de Descanso Longo'
+								title='Configuração do Tempo de Descanso Longo'
+								ref={timeSettingsCurrent['longBreak']}
+								defaultValue={timeSettingsDefault['longBreak']}
+								min={1}
+								max={60}
+							/>
+						</div>
+						<DefaultButton
+							type='submit'
+							aria-label='Salvar configurações'
+							title='Salvar configurações'
+							icon={<SaveIcon />}
+						/>
+					</form>
+				</div>
 			</MainTemplate>
 		</>
 	);

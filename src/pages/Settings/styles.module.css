@@ -1,0 +1,16 @@
+.settingsText {
+	text-align: center;
+	margin: 4rem 0px;
+}
+
+.divFormSettings {
+	margin: 4rem 0px 8rem;
+}
+
+.formRow {
+	padding-bottom: 3rem;
+}
+
+label {
+	font-style: italic;
+}
